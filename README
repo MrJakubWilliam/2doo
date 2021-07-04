@@ -16,7 +16,7 @@ displayed. If, however, the user manages to fire an event that this button fires
 sending the ajax request. If, however, in some way, the ajax request is unintentionally
 made, I'm checking everything once again at the backend level.
 
-I have also take precautions to prevent SQL injection attacks and Cross-site scripting attacks.
+I have also taken precautions to prevent SQL injection attacks and Cross-site scripting attacks.
 
 MAIN FEATURES
 While the features of the todo lists part aren't that exciting, as it's basically an
