@@ -1,0 +1,63 @@
+2doo is a web app that combines the todo list functionality with the "chorinator".
+
+AJAX'IFIED
+ALL of the interactions with the backend server is done through. This ensures smooth, 
+dynamic user experience. Furthermore it allows for separation of concerns, as the 
+logic handling the requests is separate from the "logic" that is concerned with
+viewing the data received from the server in a desired format.
+
+SECURE
+Throught the project I tried to maintain few layers of security. For example, 
+if there is a button that does something that a user with set "privilages" 
+(the right word to use is "permissions", but when I realized that 
+I was deep into the "privilages" thing) cannot do, firstly, the button is not
+displayed. If, however, the user manages to fire an event that this button fires 
+(without actaually pressing it), I'm checking for the right privilages before 
+sending the ajax request. If, however, in some way, the ajax request is unintentionally
+made, I'm checking everything once again at the backend level.
+
+I have also take precautions to prevent SQL injection attacks and Cross-site scripting attacks.
+
+MAIN FEATURES
+While the features of the todo lists part aren't that exciting, as it's basically an
+umphed up version of the lab work, the main features of the "chorinator" part 
+(I'm referring to it as 2doo chores) are non-trivial, and thus worth discussing.
+
+    HOUSEHOLDS
+    The user can create households. They can also joing households using a "code", which,
+    when entered into the join household field sends a join request to the household the "code"
+    belongs to. The "code" is unique for each household, it's minimum 6 numbers long, but it's 
+    length can be longer as more keys in the lower ranges are used. A user can be in many households.
+
+    FLATMATES
+    These are the people in the household. There are three types of flatmates : Super Admin, Admin and Standard.
+    Super Admin is the person that created the household, or has been in the household the longest 
+    (in case the original super admin leaves) (selecting super admins from admins is prefered). There is only one super admin. 
+    Only the Super Admin can change the flatmate type for a given user (between standard and admin). Only super
+    admin can remove flatmates.
+    
+    CHORES
+    Only Admins and Super Admins can add and remove chores, everyone can view. As chores
+    are created, the user is prompted if they want to either allocate the chore to a set flatmate
+    in the household, in which case, as the chore repeats with the given frequency, only they get this chore, 
+    or select random but fair allocation startegy, meaning that as the chores repeat, a different person
+    can get the chore according to which flatmate "worked the least". The working time is added to the
+    flatmate total as soon as they get a chore assigned, in order to prevent assigning the user with not fair quantity 
+    of work, for example, when they have a lot of upcomming chores, but not completed. When new flatmate joins,
+    the duration worked is "normalized", meaning that the flatmate with the lowest duration worked is now on 
+    0, but the delta between the durations worked across flatmates is conserved. This is done to avoid only allocating chores
+    to the flatmate that just joined. The chores can be marked as complete before the deadline date, this is done 
+    to allow flatmates to their chores before eg. going on a trip (and so they wouldn't be able to do their chores on the date set).
+    Chores can be edited and realocated to different flatmate, but preserving the random allocation strategy (or same user each time, in which
+    case it means we are only chaning who's doing this chore THIS TIME). If a flatmate leaves (once again, only super admin can remove them), 
+    the chores that were assigned to them are reassigned fairly between the rest of the flatmates. All the chores that were assigned ONLY (not random and fair strategy) to
+    them are switched to use the random allocation strategy. If an upcoming chore is removed, the time worked for the corressponding flatmate the
+    chore was assigned to is decreased appropratelly. Only the flatmate the chore was assigned to can mark it as complete, in which case they can
+    optionally provide photos as a proof of the chore's completion. On the day the chore is meant to be completed it is marked as pending, and remains so
+    until it is comleted. Only when the chore is marked as completed, if the chore repeats, it is allocated to some user.
+
+    JOIN REQUESTS
+    When a join request is sent, it appears in the household's "show resource". Only admins and super admins can accept join requests.
+
+    AUTH
+    Auth is pretty standard, but the password requires 8 characters, and there is a nice indicator of the strangth of password.

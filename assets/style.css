@@ -139,6 +139,20 @@ body.auth section .auth-form .form-element {
   margin-bottom: 30px;
 }
 
+body.auth section .auth-form .form-element .error-msgs {
+  color: #ff4a4a;
+  margin-top: 10px;
+  font-weight: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 0.9em;
+}
+
 body.auth section .auth-form .form-element label {
   margin-bottom: 10px;
 }
@@ -147,7 +161,6 @@ body.auth section .auth-form .form-element input {
   border: 1px solid black;
   border-radius: 25px;
   padding: 0.5em 1em;
-  outline: none;
 }
 
 body.auth section .auth-form .form-element input:focus {
@@ -163,6 +176,14 @@ body.auth section .auth-form input[type="submit"] {
 
 body.auth section .auth-form input[type="submit"]:hover {
   background-color: #000;
+}
+
+body.auth section .auth-form #passwd-strength {
+  margin-top: 8px;
+  max-width: 100%;
+  background-color: #ff4a4a;
+  width: 0px;
+  height: 2px;
 }
 
 body.dashboard {
@@ -333,110 +354,100 @@ body.dashboard nav.dash .nav-links .nav-link#logout a:hover {
   color: red;
 }
 
-body.dashboard section .top {
+body.dashboard .top {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-bottom: 3em;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 2em;
 }
 
-body.dashboard section .top h2 {
+body.dashboard .top .code {
+  color: #5c38ed;
+}
+
+body.dashboard .top h2 {
   text-transform: lowercase;
-  font-size: 1.3em;
+  font-size: 1.7em;
 }
 
-body.dashboard section .top .buttons {
+body.dashboard .top .buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-left: 20px;
 }
 
-body.dashboard section .top .buttons .button {
+body.dashboard .top .buttons .button {
   padding: 0.6em 0.7em;
   line-height: 9px;
   margin-right: 8px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
   color: white;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
-}
-
-body.dashboard section .top .buttons .button#add {
-  background-color: #5c38ed;
-}
-
-body.dashboard section .top .buttons .button#add:hover {
-  background-color: #3d239f;
-}
-
-body.dashboard section .top .buttons .button#delete {
-  background-color: #ff4a4a;
-}
-
-body.dashboard section .top .buttons .button#delete:hover {
-  background-color: #ff3636;
-}
-
-body.dashboard section .category-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 2em;
-  overflow-x: scroll;
-  padding-bottom: 20px;
-  /* width */
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  overflow: hidden;
 }
 
-body.dashboard section .category-buttons::-webkit-scrollbar {
-  height: 10px;
-}
-
-body.dashboard section .category-buttons::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-body.dashboard section .category-buttons::-webkit-scrollbar-thumb {
-  background: #191919;
-  border-radius: 20px;
-}
-
-body.dashboard section .category-buttons::-webkit-scrollbar-thumb:hover {
-  background: #191919;
-}
-
-body.dashboard section .category-buttons .button {
-  background-color: #5c38ed;
-  color: white;
-  margin-right: 10px;
-  border-radius: 20px;
-  white-space: nowrap;
-  border: none;
-  outline: none;
+body.dashboard .top .buttons .button i {
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
-  cursor: pointer;
+  margin-right: 0px;
 }
 
-body.dashboard section .category-buttons .button.clicked {
-  background-color: #3d239f;
+body.dashboard .top .buttons .button#add {
+  background-color: #5c38ed;
 }
 
-body.dashboard section .category-buttons .button#add-cat {
-  line-height: 0px;
-  padding: 0.5em 0.6em;
+body.dashboard .top .buttons .button#join, body.dashboard .top .buttons .button#edit {
+  background-color: #3cce4e;
 }
 
-body.dashboard section .category-buttons .button#add-cat:hover {
-  background-color: #3d239f;
+body.dashboard .top .buttons .button#delete {
+  background-color: #ff4a4a;
 }
 
-body.dashboard section .list-components {
+body.dashboard .top .buttons .button .hidden {
+  text-align: right;
+  max-width: 0;
+  visibility: hidden;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  width: 0%;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+body.dashboard .top .buttons .button:hover i {
+  margin-right: 10px;
+}
+
+body.dashboard .top .buttons .button:hover .hidden {
+  max-width: 200px;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+}
+
+body.dashboard .components {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -446,10 +457,230 @@ body.dashboard section .list-components {
           flex-direction: column;
 }
 
-body.dashboard section .list-components .list-component {
+body.dashboard .components .component {
+  margin-bottom: 2em;
   background-color: #191919;
-  padding: 1em 2em;
-  margin: 1em 0;
+  padding: 2em 1.7em;
+  border-radius: 3em;
+  width: auto;
+}
+
+body.dashboard .components .component.hidden {
+  display: none;
+}
+
+body.dashboard .components .component .component-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1em;
+}
+
+body.dashboard .components .component .component-top h2 {
+  text-transform: lowercase;
+  font-size: 1.3em;
+}
+
+body.dashboard .components .component .component-top h2 .blue-accent {
+  color: #5c38ed;
+}
+
+body.dashboard .components .component .component-top .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 20px;
+}
+
+body.dashboard .components .component .component-top .buttons .button {
+  padding: 0.6em 0.7em;
+  line-height: 9px;
+  margin-right: 8px;
+  color: white;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+body.dashboard .components .component .component-top .buttons .button#add {
+  background-color: #5c38ed;
+}
+
+body.dashboard .components .component .component-top .buttons .button#add:hover {
+  background-color: #3d239f;
+}
+
+body.dashboard .components .component .component-top .buttons .button#delete {
+  background-color: #ff4a4a;
+}
+
+body.dashboard .components .component .component-top .buttons .button#delete:hover {
+  background-color: #ff3636;
+}
+
+body.dashboard .components .component .category-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1em;
+  overflow-x: scroll;
+  padding-bottom: 20px;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+
+body.dashboard .components .component .category-buttons::-webkit-scrollbar {
+  height: 10px;
+}
+
+body.dashboard .components .component .category-buttons::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body.dashboard .components .component .category-buttons::-webkit-scrollbar-thumb {
+  background: #101010;
+  border-radius: 20px;
+}
+
+body.dashboard .components .component .category-buttons::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
+
+body.dashboard .components .component .category-buttons .button {
+  background-color: #5c38ed;
+  color: white;
+  margin-right: 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  border: none;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+body.dashboard .components .component .category-buttons .button.clicked {
+  background-color: #3d239f;
+}
+
+body.dashboard .components .component .category-buttons .button#add {
+  line-height: 0px;
+  padding: 0.5em 0.6em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  overflow: hidden;
+}
+
+body.dashboard .components .component .category-buttons .button#add i {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  margin-right: 0px;
+}
+
+body.dashboard .components .component .category-buttons .button#add .hidden {
+  text-align: right;
+  max-width: 0;
+  visibility: hidden;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  width: 0%;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+body.dashboard .components .component .category-buttons .button#add:hover i {
+  margin-right: 10px;
+}
+
+body.dashboard .components .component .category-buttons .button#add:hover .hidden {
+  max-width: 200px;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+}
+
+body.dashboard .components .component .info-component {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body.dashboard .components .component .info-component .main-text {
+  margin-bottom: 2em;
+  line-height: 28px;
+}
+
+body.dashboard .components .component .info-component .sub-text {
+  margin-bottom: 1em;
+}
+
+body.dashboard .components .component .images-component {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+body.dashboard .components .component .images-component .img-wrapper {
+  max-height: 230px;
+  margin: 20px;
+}
+
+body.dashboard .components .component .images-component .img-wrapper img {
+  border-radius: 20px;
+  max-height: inherit;
+}
+
+body.dashboard .components .component .list-components {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body.dashboard .components .component .list-components .grayed-out {
+  color: #878787;
+}
+
+body.dashboard .components .component .list-components .descriptor {
+  margin-top: 2em;
+}
+
+body.dashboard .components .component .list-components .list-part {
+  margin-top: 2em;
+}
+
+body.dashboard .components .component .list-components .list-component {
+  border: 1px solid #323232;
+  padding: 1.1em 1.3em;
+  margin: 0.5em 0;
+  overflow: hidden;
   border-radius: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -463,9 +694,28 @@ body.dashboard section .list-components .list-component {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-body.dashboard section .list-components .list-component.hidden {
+body.dashboard .components .component .list-components .list-component.pending {
+  background-color: #ff4a4a17;
+  border-color: #ff4a4a;
+}
+
+body.dashboard .components .component .list-components .list-component.upcoming {
+  background-color: #5c38ed1f;
+  border-color: #5c38ed;
+}
+
+body.dashboard .components .component .list-components .list-component.complete {
+  background-color: #3cce4e26;
+  border-color: #3cce4e;
+}
+
+body.dashboard .components .component .list-components .list-component.hidden {
   opacity: 0;
   height: 0px;
   color: transparent;
@@ -473,29 +723,60 @@ body.dashboard section .list-components .list-component.hidden {
   margin: 0;
 }
 
-body.dashboard section .list-components .list-component .text .category-link {
+body.dashboard .components .component .list-components .list-component .text {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  line-height: 1.4em;
+}
+
+body.dashboard .components .component .list-components .list-component .text .category-link {
   color: #5c38ed;
   text-decoration: none;
   font-weight: 200;
   margin-right: 10px;
 }
 
-body.dashboard section .list-components .list-component .buttons {
+body.dashboard .components .component .list-components .list-component .buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 10px;
 }
 
-body.dashboard section .list-components .list-component .buttons a {
+body.dashboard .components .component .list-components .list-component .buttons a,
+body.dashboard .components .component .list-components .list-component .buttons button,
+body.dashboard .components .component .list-components .list-component .buttons div.img-upload {
+  background-color: inherit;
   color: white;
-  margin-left: 20px;
+  padding: 0 5px;
+  cursor: pointer;
+  border: none;
+  margin-left: 10px;
 }
 
-body.dashboard section .list-components .list-component .buttons a.delete {
+body.dashboard .components .component .list-components .list-component .buttons a.delete,
+body.dashboard .components .component .list-components .list-component .buttons button.delete,
+body.dashboard .components .component .list-components .list-component .buttons div.img-upload.delete {
   color: #ff4a4a;
 }
 
-body.dashboard section .list-components .list-component.checked {
+body.dashboard .components .component .list-components .list-component .buttons a label,
+body.dashboard .components .component .list-components .list-component .buttons button label,
+body.dashboard .components .component .list-components .list-component .buttons div.img-upload label {
+  cursor: pointer;
+}
+
+body.dashboard .components .component .list-components .list-component .buttons input[type="file"] {
+  display: none;
+}
+
+body.dashboard .components .component .list-components .list-component.checked {
   opacity: 0.3;
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
@@ -503,11 +784,114 @@ body.dashboard section .list-components .list-component.checked {
 }
 
 body.dashboard .create-form {
+  margin: auto;
   width: 100%;
+}
+
+body.dashboard .create-form .blue-accent {
+  color: #5c38ed;
+}
+
+body.dashboard .edit-household .edit-flatmates-component {
+  margin-top: 4em;
+}
+
+body.dashboard .edit-household .edit-flatmates-component .edit-flatmate {
+  margin: 1em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body.dashboard .edit-household .edit-flatmates-component .edit-flatmate .buttons {
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+body.dashboard .edit-household .edit-flatmates-component .edit-flatmate .buttons .privilage-buttons {
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  font-size: 0.9em;
+}
+
+body.dashboard .edit-household .edit-flatmates-component .edit-flatmate .buttons .privilage-buttons button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 2;
+  padding: 5px 10px;
+  border: none;
+  background-color: transparent;
+  border-radius: 20px;
+  color: white;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+body.dashboard .edit-household .edit-flatmates-component .edit-flatmate .buttons .privilage-buttons .pill {
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+  border-radius: 20px;
+  background-color: #5c38ed;
+  position: absolute;
+  left: 0px;
+  width: 34%;
+  height: 100%;
+}
+
+body.dashboard .edit-household .edit-flatmates-component .edit-flatmate .buttons #delete {
+  padding: 0.6em 0.7em;
+  line-height: 9px;
+  margin-right: 8px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  border: none;
+  background-color: #ff4a4a;
+  cursor: pointer;
+}
+
+body.dashboard .edit-household .edit-flatmates-component .edit-flatmate .buttons #delete:hover {
+  background-color: red;
+}
+
+body.dashboard h2 {
+  text-transform: lowercase;
+}
+
+body.dashboard form {
+  font-size: 0.9em;
   margin-top: 2.5em;
 }
 
-body.dashboard .create-form#list-item-create {
+body.dashboard form#list-item-create {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -521,37 +905,38 @@ body.dashboard .create-form#list-item-create {
           align-items: center;
 }
 
-body.dashboard .create-form#list-item-create .form-element {
+body.dashboard form#list-item-create .form-element {
   width: inherit;
+  margin-bottom: 27px;
 }
 
-body.dashboard .create-form#list-item-create .form-element input {
+body.dashboard form#list-item-create .form-element input {
   padding: 0.8em 1em;
   border-radius: 25px 0 0 25px;
 }
 
-body.dashboard .create-form#list-item-create input[type="submit"] {
+body.dashboard form#list-item-create input[type="submit"] {
   padding: 0.8em 1.4em;
   border-radius: 0 20px 20px 0;
   margin-bottom: 4px;
 }
 
-body.dashboard .create-form .buttons {
+body.dashboard form .buttons {
   margin-bottom: 30px;
 }
 
-body.dashboard .create-form .buttons a {
+body.dashboard form .buttons a {
   text-decoration: none;
   color: #d0d0d0;
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
 }
 
-body.dashboard .create-form .buttons a:hover {
+body.dashboard form .buttons a:hover {
   color: #adadad;
 }
 
-body.dashboard .create-form .form-element {
+body.dashboard form .form-element {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -559,38 +944,59 @@ body.dashboard .create-form .form-element {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
-body.dashboard .create-form .form-element label {
+body.dashboard form .form-element label {
   margin-bottom: 10px;
 }
 
-body.dashboard .create-form .form-element input,
-body.dashboard .create-form .form-element select {
+body.dashboard form .form-element input,
+body.dashboard form .form-element select,
+body.dashboard form .form-element textarea {
   border: 0px;
   border-radius: 25px;
   padding: 0.5em 1em;
-  outline: none;
 }
 
-body.dashboard .create-form .form-element input:focus,
-body.dashboard .create-form .form-element select:focus {
+body.dashboard form .form-element input[type="range"],
+body.dashboard form .form-element select[type="range"],
+body.dashboard form .form-element textarea[type="range"] {
+  padding: 0;
+}
+
+body.dashboard form .form-element input:focus,
+body.dashboard form .form-element select:focus,
+body.dashboard form .form-element textarea:focus {
   background-color: #f2f2f2;
 }
 
-body.dashboard .create-form input[type="submit"] {
+body.dashboard form .form-element .error-msgs {
+  color: #ff4a4a;
+  margin-top: 10px;
+  font-weight: 300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body.dashboard form input[type="submit"] {
   border: none;
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
   cursor: pointer;
 }
 
-body.dashboard .create-form input[type="submit"]:hover {
+body.dashboard form input[type="submit"]:hover {
   background-color: #000;
 }
 
 body .status-msg {
+  white-space: pre;
   padding: 1em 2em;
   z-index: 999;
   max-width: 40%;
@@ -625,6 +1031,11 @@ body .status-msg.success {
   background-color: #36ff58;
 }
 
+body .status-msg.info {
+  color: white;
+  background-color: #5c38ed;
+}
+
 body .status-msg.hidden {
   -webkit-transform: translateY(102%);
           transform: translateY(102%);
@@ -654,7 +1065,10 @@ body .button.black-br {
   body.auth section .auth-form {
     width: 300px;
   }
-  body.dashboard section .create-form {
+  body.dashboard .components .component {
+    padding: 2em 3em;
+  }
+  body.dashboard .create-form {
     width: 300px;
   }
 }
@@ -664,8 +1078,11 @@ body .button.black-br {
     padding-left: 8em;
     padding-right: 8em;
   }
-  body.dashboard section .top h2 {
+  body.dashboard .top h2 {
     font-size: 2em;
+  }
+  body.dashboard .components .component .component-top h2 {
+    font-size: 1.3em;
   }
 }
 
@@ -704,8 +1121,49 @@ body .button.black-br {
   body.dashboard .hamburger {
     display: none !important;
   }
-  body.dashboard section {
+  body.dashboard .top {
+    margin-bottom: 3em;
     margin-top: 5em;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  body.dashboard .create-form,
+  body.dashboard .edit-household {
+    margin-top: 4em;
+  }
+  body.dashboard .create-form h2,
+  body.dashboard .edit-household h2 {
+    font-size: 2em;
+  }
+  body.dashboard .edit-household .edit-flatmates-component .edit-flatmate {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  body.dashboard .edit-household .edit-flatmates-component .edit-flatmate .privilage-buttons {
+    margin-right: 2em;
+  }
+  body.dashboard .components {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    /* grid-auto-rows: 100px; */
+    gap: 40px;
+    grid-auto-flow: dense;
+  }
+  body.dashboard .components .component {
+    height: -webkit-min-content;
+    height: -moz-min-content;
+    height: min-content;
+  }
+  body.dashboard .components .component .component-top {
+    margin-bottom: 2em;
   }
 }
 
@@ -796,6 +1254,11 @@ video {
 
 body {
   line-height: 1;
+}
+
+button,
+input {
+  outline: none;
 }
 
 article,
